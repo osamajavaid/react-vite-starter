@@ -34,6 +34,7 @@ export default function Home() {
             </h2>
             <div className="grid grid-cols-5 items-center justify-center px-16 gap-4 text-LightGray">
                 <Card title="Ant Design" />
+                <Card title="React Intl" />
                 <Card title="React Query" />
                 <Card title="Axios" />
                 <Card title="Vite-Plugin-SVGR" />
