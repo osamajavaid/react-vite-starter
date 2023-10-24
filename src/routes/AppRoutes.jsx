@@ -22,13 +22,13 @@ export default function AppRoutes() {
                 <ScrollTop />
                 <Routes>
                     {/* ================= All Routes ================ */}
-                    {routes_here.map((route) => (
+                    {routes_here.map((route, key) => (
                         !isAuthenticated ?
-                            <Route path="/login" element={<Login />} />
+                            <Route key={key} path="/login" element={<Login />} />
                             :
                             <Route
-                                index
-                                key={route.id}
+                                // index
+                                key={key}
                                 path={route.path}
                                 element={
                                     <Layout>
