@@ -1,22 +1,30 @@
-import { useState } from 'react';
+import React from "react";
 
-function useLocalStorage(key, initialValue) {
-    // Get the stored value from local storage
-    const storedValue = localStorage.getItem(key);
+export const useLocalStorage = (keyName, defaultValue) => {
+  const [storedValue, setStoredValue] = React.useState(() => {
+    try {
+      const value = window.localStorage.getItem(keyName);
+      return value === "true" ? true : value === "false" ? false : defaultValue;
+    } catch (err) {
+      return defaultValue;
+    }
+  });
 
-    // Set the initial value to either the stored value or the provided initial value
-    const initial = storedValue !== null ? JSON.parse(storedValue) : initialValue;
+  const setValue = newValue => {
+    try {
+      window.localStorage.setItem(keyName, String(newValue));
+    } catch (err) {}
+    setStoredValue(newValue);
+  };
 
-    // Create a state variable to track the current value
-    const [value, setValue] = useState(initial);
+  return [storedValue, setValue];
+};
 
-    // Update the local storage whenever the value changes
-    const updateValue = (newValue) => {
-        setValue(newValue);
-        localStorage.setItem(key, JSON.stringify(newValue));
-    };
 
-    return [value, updateValue];
-}
 
-export default useLocalStorage;
+// this is how we can use it
+// const MyApp = () => {
+//     const [name, setName] = useLocalStorage('name', 'John');
+  
+//     return <input value={name} onChange={e => setName(e.target.value)} />;
+//   };
