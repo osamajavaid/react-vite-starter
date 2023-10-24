@@ -1,4 +1,14 @@
-export const dummy = {
-    dummmy: "hehe",
-    tummy: "hehehe",
-};
+export const languages = [
+    {
+        value: 'ar',
+        label: 'Arabic',
+    },
+    {
+        value: 'en',
+        label: 'English',
+    },
+    {
+        value: 'fr',
+        label: 'French',
+    },
+]
